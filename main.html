@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Mikara ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    color: white;
+}
+
+/* BACKGROUND */
+.bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: url('YOUR_BACKGROUND.jpg') center/cover no-repeat;
+    filter: blur(8px) brightness(0.6);
+    transform: scale(1.1);
+}
+
+/* MAIN CONTENT */
+.container {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 30px;
+    opacity: 0;
+    transition: 1.5s;
+}
+
+/* INTRO SCENE */
+#intro {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    z-index: 5;
+    animation: zoomOut 3s forwards;
+}
+
+@keyframes zoomOut {
+    0% {transform: scale(1); opacity:1;}
+    100% {transform: scale(2); opacity:0;}
+}
+
+/* TITLES */
+h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.5em;
+}
+
+h2 {
+    margin-top: -10px;
+}
+
+/* IMAGE */
+img {
+    width: 220px;
+    border-radius: 20px;
+    margin-top: 20px;
+    box-shadow: 0 0 25px rgba(255,255,255,0.4);
+}
+
+/* MESSAGE */
+.message {
+    max-width: 700px;
+    margin: 20px auto;
+    font-size: 1.1em;
+    line-height: 1.6em;
+    min-height: 200px;
+}
+
+/* GIFT */
+button {
+    padding: 12px 20px;
+    border-radius: 20px;
+    border: none;
+    margin: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#noBtn {
+    position: absolute;
+}
+
+/* RING */
+#ring {
+    font-size: 3em;
+    opacity: 0;
+    transform: scale(0);
+    transition: 0.6s;
+}
+
+/* FLOATING EMOJIS */
+.emoji {
+    position: fixed;
+    animation: float 7s linear infinite;
+    font-size: 20px;
+}
+
+@keyframes float {
+    from {transform: translateY(100vh);}
+    to {transform: translateY(-10vh);}
+}
+
+/* CONFETTI */
+.confetti {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: pink;
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+    to {transform: translateY(100vh);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div id="intro">💥 It's finally the 11th of May 💥</div>
+
+<div class="container" id="main">
+    <h1>Happy Birthday 💖</h1>
+    <h2>Mikara, I Love Youz</h2>
+
+    <img src="HER_PHOTO.jpg">
+
+    <div class="message" id="text"></div>
+
+    <h3>🎁 Your Gift 🎁</h3>
+    <button onclick="openGift()">Open</button>
+    <button id="noBtn" onmouseover="moveBtn()">Don't Open 😜</button>
+
+    <div id="ring">💍</div>
+</div>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+    <source src="your-music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// SHOW MAIN AFTER INTRO
+setTimeout(() => {
+    document.getElementById("intro").style.display = "none";
+    const main = document.getElementById("main");
+    main.style.opacity = "1";
+    document.getElementById("music").play();
+}, 3000);
+
+// TYPEWRITER MESSAGE
+const msg = `Mikara… ❤️
+
+Happy birthday to the most precious, beautiful, amazing girl in my life.
+
+You’re not just pretty… you’re the kind of beautiful that makes everything around you feel lighter. You’re hot in a way that drives me crazy, but what makes me fall for you over and over again is your heart… the way you care, the way you support me, the way you love.
+
+You’ve been there for me in ways no one else ever has, and I’ll never forget that. You make my worst days feel okay, and my best days feel perfect.
+
+I love you deeply, truly, and completely. I don’t want anything less than you, and I never will. You’re not just important to me… you are everything to me.
+
+I promise to stand by you, to love you, and to remind you every single day how special you are.
+
+Happy birthday my pretty girl 💖`;
+
+let i = 0;
+function typeWriter() {
+    if (i < msg.length) {
+        document.getElementById("text").innerHTML += msg.charAt(i);
+        i++;
+        setTimeout(typeWriter, 30);
+    }
+}
+setTimeout(typeWriter, 3500);
+
+// MOVE BUTTON
+function moveBtn() {
+    const btn = document.getElementById("noBtn");
+    btn.style.top = Math.random() * window.innerHeight + "px";
+    btn.style.left = Math.random() * window.innerWidth + "px";
+}
+
+// OPEN GIFT
+function openGift() {
+    for (let i = 0; i < 100; i++) {
+        let c = document.createElement("div");
+        c.classList.add("confetti");
+        c.style.left = Math.random() * 100 + "vw";
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 3000);
+    }
+
+    const ring = document.getElementById("ring");
+    ring.style.opacity = "1";
+    ring.style.transform = "scale(1.5)";
+
+    setTimeout(() => {
+        alert("For my pretty girl 💖");
+    }, 500);
+}
+
+// FLOATING EMOJIS
+function emojiFloat() {
+    const e = document.createElement("div");
+    e.classList.add("emoji");
+    e.innerText = Math.random() > 0.5 ? "❤️" : "😈";
+    e.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(e);
+    setTimeout(() => e.remove(), 7000);
+}
+setInterval(emojiFloat, 500);
+
+</script>
+
+</body>
+</html>
